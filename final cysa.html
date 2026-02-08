@@ -1,0 +1,230 @@
+# ======================= COPY EVERYTHING BELOW INTO A NEW FOLDER =======================
+# Folder name: cyfsa-platform
+
+# ---------- package.json ----------
+{
+  "name": "cyfsa-platform",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "14.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "zod": "^3.22.4"
+  }
+}
+
+# ---------- next.config.mjs ----------
+export default {
+  reactStrictMode: true
+};
+
+# ---------- tsconfig.json ----------
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
+
+# ---------- src/app/layout.tsx ----------
+import "./globals.css";
+import Link from "next/link";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <header className="hdr">
+          <div className="wrap">
+            <b>CYFSA Ontario – Educational Platform</b>
+            <nav>
+              <Link href="/">Home</Link>
+              <Link href="/cyfsa">CYFSA Guide</Link>
+              <Link href="/family-court">Family Court</Link>
+              <Link href="/child-development">Child Impact</Link>
+              <Link href="/analyzer">Analyzer</Link>
+              <Link href="/membership">Membership</Link>
+              <Link href="/find-a-lawyer">Find a Lawyer</Link>
+              <Link href="/lawyer-spots">Lawyer Spots</Link>
+            </nav>
+          </div>
+        </header>
+        <main className="wrap">{children}</main>
+        <footer className="ftr">Educational only. Ontario jurisdiction only. Not legal advice.</footer>
+      </body>
+    </html>
+  );
+}
+
+# ---------- src/app/globals.css ----------
+*{box-sizing:border-box} body{margin:0;background:#0b1220;color:#e5ecff;font-family:system-ui}
+a{color:#9fb0ff;text-decoration:none;margin-right:10px}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+.hdr{background:#0e1730;border-bottom:1px solid #1e2a52}
+.hdr .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between}
+nav a{margin-right:8px}
+.ftr{border-top:1px solid #1e2a52;padding:12px;text-align:center;opacity:.8}
+.card{background:#0e1730;border:1px solid #1e2a52;border-radius:12px;padding:16px;margin:12px 0}
+.btn{background:#2a4bff;border:0;color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer}
+.input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #1e2a52;background:#0b1220;color:#e5ecff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+
+# ---------- src/app/page.tsx ----------
+export default function Home(){
+  return (
+    <div className="card">
+      <h1>CYFSA Ontario – Parent Education Platform</h1>
+      <p>Educational guidance for CYFSA, Family Court, child impact, document analysis, and lawyer routing. Ontario only. Not legal advice.</p>
+      <ul>
+        <li>Parent education + templates</li>
+        <li>Document analyzer (educational)</li>
+        <li>Find a lawyer by city (paid spots)</li>
+      </ul>
+    </div>
+  );
+}
+
+# ---------- src/app/cyfsa/page.tsx ----------
+export default function CYFSA(){
+  return <div className="card"><h1>CYFSA Guide (Ontario)</h1><p>Emergency removals, authority limits, evidence vs hearsay, timelines, rights. Hyperlink primary sources when expanding content.</p></div>;
+}
+
+# ---------- src/app/family-court/page.tsx ----------
+export default function FamilyCourt(){
+  return <div className="card"><h1>Family Court (Ontario)</h1><p>Case conferences, motions, affidavits, temporary vs final orders.</p></div>;
+}
+
+# ---------- src/app/child-development/page.tsx ----------
+export default function ChildDev(){
+  return <div className="card"><h1>Child Development Impact</h1><p>Short/long-term impact, attachment disruption, trauma research (peer-reviewed only).</p></div>;
+}
+
+# ---------- src/app/membership/page.tsx ----------
+export default function Membership(){
+  return (
+    <div className="card">
+      <h1>Parent Memberships</h1>
+      <ul>
+        <li>Basic – CYFSA + Family Court access</li>
+        <li>Pro – + Document Analyzer</li>
+        <li>Premium – + Templates + Voice assistant (later)</li>
+      </ul>
+      <p>Payment: Interac e-Transfer (mr.pelkie@gmail.com). No refunds after first use.</p>
+    </div>
+  );
+}
+
+# ---------- src/app/analyzer/page.tsx ----------
+export default function Analyzer(){
+  return (
+    <div className="card">
+      <h1>Document Analyzer (Ontario – Educational Only)</h1>
+      <iframe src="/widget.html" style={{width:"100%",height:1100,border:0}} />
+    </div>
+  );
+}
+
+# ---------- public/widget.html ----------
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>body{margin:0;background:#0b1220;color:#e5ecff;font-family:system-ui}.cyfsa{max-width:1100px;margin:16px auto;padding:12px;background:#0e1730;border:1px solid #1e2a52;border-radius:12px}</style></head>
+<body>
+<div class="cyfsa">
+<h2>CYFSA Analyzer (Ontario) — Educational Only</h2>
+<input id="f" type="file"><button onclick="analyze()">Analyze</button>
+<textarea id="t" style="width:100%;min-height:220px"></textarea>
+<pre id="r"></pre>
+</div>
+<script>
+async function analyze(){
+  const t=document.getElementById('t').value;
+  const flags=[];
+  if(/they said|I was told/i.test(t)) flags.push("Hearsay detected");
+  document.getElementById('r').textContent=JSON.stringify({jurisdiction:"Ontario",educationalOnly:true,flags},null,2);
+}
+</script>
+</body></html>
+
+# ---------- src/app/find-a-lawyer/page.tsx ----------
+"use client";
+import { useState } from "react";
+export default function FindLawyer(){
+  const [city,setCity]=useState(""); 
+  return (
+    <div className="card">
+      <h1>Find a Lawyer</h1>
+      <input className="input" placeholder="Enter your city" value={city} onChange={e=>setCity(e.target.value)} />
+      <p>Pricing + availability returned dynamically by city (to be wired later).</p>
+      <p>Consent required before sending your info to any lawyer.</p>
+    </div>
+  );
+}
+
+# ---------- src/app/lawyer-spots/page.tsx ----------
+export default function LawyerSpots(){
+  return (
+    <div className="card">
+      <h1>Buy a City Spot (Lawyers)</h1>
+      <p>Lawyers buy city inventory (monthly). Not a membership.</p>
+      <p>Pricing returned dynamically after entering city.</p>
+      <a className="btn" href="/lawyer-onboard">Request onboarding</a>
+    </div>
+  );
+}
+
+# ---------- src/app/lawyer-onboard/page.tsx ----------
+"use client";
+import { useState } from "react";
+export default function LawyerOnboard(){
+  const [msg,setMsg]=useState("");
+  async function submit(e:any){
+    e.preventDefault();
+    const data=Object.fromEntries(new FormData(e.currentTarget).entries());
+    await fetch("/api/lawyer/onboard",{method:"POST",body:JSON.stringify(data)});
+    setMsg("Submitted. Status: PENDING (manual activation after payment).");
+  }
+  return (
+    <div className="card">
+      <h1>Lawyer Onboarding</h1>
+      <form onSubmit={submit} className="grid">
+        <input className="input" name="firm" placeholder="Firm" required />
+        <input className="input" name="name" placeholder="Lawyer name" required />
+        <input className="input" name="email" placeholder="Email" required />
+        <input className="input" name="city" placeholder="City" required />
+        <select name="tier"><option>EXCLUSIVE</option><option>PRIORITY</option><option>STANDARD</option></select>
+        <button className="btn" type="submit">Submit</button>
+      </form>
+      {msg && <p>{msg}</p>}
+      <p>Payment: Interac e-Transfer to mr.pelkie@gmail.com</p>
+    </div>
+  );
+}
+
+# ---------- src/app/api/lawyer/onboard/route.ts ----------
+import { NextResponse } from "next/server";
+export async function POST(req:Request){
+  const body = await req.json().catch(()=>null);
+  if(!body?.email || !body?.city || !body?.tier){
+    return NextResponse.json({ok:false},{status:400});
+  }
+  return NextResponse.json({ok:true,status:"PENDING"});
+}
+# ======================= END COPY =======================
