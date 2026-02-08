@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #0b1220;
+  --foreground: #e5ecff;
+  --card: #0e1730;
+  --card-foreground: #e5ecff;
+  --primary: #2a4bff;
+  --primary-foreground: #ffffff;
+  --border: #1e2a52;
+  --muted: #1a2540;
+  --muted-foreground: #8a99c4;
+  --accent: #9fb0ff;
+  --radius: 0.75rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 12px 0;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  border: 0;
+  color: var(--primary-foreground);
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.925rem;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 0.925rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
