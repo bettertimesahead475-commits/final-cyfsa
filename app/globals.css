@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0b1220;
+  --foreground: #e5ecff;
+  --card: #0e1730;
+  --card-foreground: #e5ecff;
+  --primary: #2a4bff;
+  --primary-foreground: #ffffff;
+  --border: #1e2a52;
+  --muted: #1a2744;
+  --muted-foreground: #8b9bc2;
+  --accent: #9fb0ff;
+  --radius: 0.75rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
