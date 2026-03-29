@@ -1,4 +1,3 @@
-/** @type {import('next').NextConfig} */
 export default {
-  reactStrictMode: true,
+  reactStrictMode: true
 };
