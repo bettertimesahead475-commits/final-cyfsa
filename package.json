@@ -1,20 +1,8 @@
 {
-  "name": "cyfsa-platform",
+  "name": "my-v0-project",
+  "version": "0.1.0",
   "private": true,
-  "version": "1.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "14.1.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "zod": "^3.22.4",
-    "mammoth": "^1.11.0",
-    "pdfjs-dist": "^5.4.149",
-    "tesseract.js": "^6.0.1"
+    "build": "echo 'no build script'"
   }
 }
