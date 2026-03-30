@@ -64,7 +64,7 @@ export const AnalyzerResultSchema = z.object({
     categoriesDetected: z.array(FlagTypeSchema),
   }),
   flags: z.array(AnalyzerFlagSchema),
-  issueCounts: z.record(FlagTypeSchema, z.number().int().nonnegative()).partial(),
+  issueCounts: z.record(z.string(), z.number().int().nonnegative()).optional(),
   intake: z.object({
     recommendedForLawyerReview: z.boolean(),
     recommendedNextSteps: z.array(z.string()),
